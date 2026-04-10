@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galerie — Tanya Sava. Ölgemälde von Tetiana Savushkina.">
+  <title>Galerie — Tanya Sava</title>
+  <style>
+    :root {
+      --color-bg-deep:      #0a1628;
+      --color-bg-primary:   #0f1f3d;
+      --color-bg-card:      #162848;
+      --color-bg-elevated:  #1a2f52;
+      --color-bg-border:    #1e3560;
+
+      --color-accent:           #b8d460;
+      --color-accent-tag-text:  #0f1f3d;
+
+      --color-text-primary:   #e8eef8;
+      --color-text-secondary: #8fa8c8;
+      --color-text-muted:     #6a88a8;
+      --color-text-subtle:    #4a6080;
+
+      --spacing-xs:  4px;
+      --spacing-sm:  8px;
+      --spacing-md:  16px;
+      --spacing-lg:  32px;
+      --spacing-xl:  64px;
+
+      --max-width: 1100px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--color-bg-deep);
+      color: var(--color-text-secondary);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── Navigation ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: var(--color-bg-deep);
+      border-bottom: 1px solid var(--color-bg-border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    .logo em { font-style: italic; }
+
+    .nav-links {
+      display: flex;
+      gap: var(--spacing-lg);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] { color: var(--color-accent); }
+
+    /* ── Section label ──────────────────────────────────────── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .section-label .rule {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .section-label span:last-child {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+
+    /* ── Gallery ────────────────────────────────────────────── */
+    #galerie {
+      padding-top: 56px; /* nav height */
+    }
+
+    .gallery-header {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px 40px 32px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--color-bg-elevated);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 22, 40, 0.72);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: var(--spacing-md);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .overlay-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-text-primary);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .overlay-medium {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 13px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--color-bg-deep);
+      border-top: 0.5px solid var(--color-bg-border);
+      padding: var(--spacing-lg) 0;
+      margin-top: 2px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+      text-align: center;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-subtle);
+    }
+
+    .footer-inner a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    .footer-inner .sep { margin: 0 10px; }
+
+    /* ── Mobile ─────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-inner,
+      .gallery-header,
+      .footer-inner { padding-left: 20px; padding-right: 20px; }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Tanya <em>Sava</em></a>
+      <ul class="nav-links">
+        <li><a href="index.html#hero">Ausstellung</a></li>
+        <li><a href="galerie.html" aria-current="page">Galerie</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Gallery -->
+  <section id="galerie">
+    <div class="gallery-header">
+      <div class="section-label">
+        <span class="rule"></span>
+        <span>Malerei · Öl auf Leinwand</span>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img src="PICS/1.jpg" alt="Kirchturm im Frühling — Öl auf Leinwand, Tanya Sava">
+        <div class="gallery-overlay">
+          <span class="overlay-title">Kirchturm im Frühling</span>
+          <span class="overlay-medium">Öl auf Leinwand</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="PICS/2.jpg" alt="Haus im Grünen — Öl auf Leinwand, Tanya Sava">
+        <div class="gallery-overlay">
+          <span class="overlay-title">Haus im Grünen</span>
+          <span class="overlay-medium">Öl auf Leinwand</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="PICS/3.jpg" alt="Sonniger Nachmittag — Öl auf Leinwand, Tanya Sava">
+        <div class="gallery-overlay">
+          <span class="overlay-title">Sonniger Nachmittag</span>
+          <span class="overlay-medium">Öl auf Leinwand</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <a href="https://instagram.com/tanyasavaart" target="_blank" rel="noopener">@tanyasavaart</a>
+      <span class="sep">·</span>
+      <span>Tetiana Savushkina</span>
+      <span class="sep">·</span>
+      <span>Roth, Deutschland</span>
+    </div>
+  </footer>
+
+</body>
+</html>

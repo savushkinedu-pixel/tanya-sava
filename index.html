@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tetiana Savushkina – Malerei, Öl auf Leinwand. Persönliche Kunstausstellung, Vernissage 17. April 2026 in Roth.">
+  <title>Tanya Sava — Malerei · Öl auf Leinwand</title>
+  <style>
+    :root {
+      --color-bg-deep:      #0a1628;
+      --color-bg-primary:   #0f1f3d;
+      --color-bg-card:      #162848;
+      --color-bg-elevated:  #1a2f52;
+      --color-bg-border:    #1e3560;
+
+      --color-accent:           #b8d460;
+      --color-accent-dark:      #4a7c2a;
+      --color-accent-tag-bg:    #b8d460;
+      --color-accent-tag-text:  #0f1f3d;
+
+      --color-text-primary:   #e8eef8;
+      --color-text-secondary: #8fa8c8;
+      --color-text-muted:     #6a88a8;
+      --color-text-subtle:    #4a6080;
+
+      --spacing-xs:  4px;
+      --spacing-sm:  8px;
+      --spacing-md:  16px;
+      --spacing-lg:  32px;
+      --spacing-xl:  64px;
+      --spacing-2xl: 96px;
+
+      --border-radius-sm: 4px;
+      --border-radius-md: 8px;
+      --border-radius-lg: 12px;
+
+      --max-width: 1100px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--color-bg-primary);
+      color: var(--color-text-secondary);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ── Navigation ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      background: var(--color-bg-deep);
+      border-bottom: 1px solid var(--color-bg-border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    .logo em { font-style: italic; }
+
+    .nav-links {
+      display: flex;
+      gap: var(--spacing-lg);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--color-accent); }
+
+    /* ── Section label ──────────────────────────────────────── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .section-label .rule {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .section-label span:last-child {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+
+    /* ── Hero ───────────────────────────────────────────────── */
+    #hero {
+      padding: 80px 0;
+      padding-top: calc(80px + 56px);
+      background: var(--color-bg-primary);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .artist-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 64px;
+      font-weight: 400;
+      color: var(--color-text-primary);
+      line-height: 1.1;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .artist-alias {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 44px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-accent);
+      line-height: 1.1;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .tagline {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    /* ── CTA Button ─────────────────────────────────────────── */
+    .cta-btn {
+      display: inline-block;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      background: transparent;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .cta-btn:hover { background: rgba(168, 201, 122, 0.08); }
+
+    /* ── Vernissage Card ────────────────────────────────────── */
+    .vernissage-card {
+      background: var(--color-bg-card);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+    }
+
+    .card-badge {
+      width: 100%;
+      background: var(--color-accent-tag-bg);
+      color: var(--color-accent-tag-text);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--color-bg-elevated);
+      border-bottom: 0.5px solid var(--color-bg-border);
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body { padding: var(--spacing-md); }
+
+    .card-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+      padding-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      border-bottom: 0.5px solid var(--color-bg-border);
+    }
+
+    .card-info-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .card-info-value {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      line-height: 1.2;
+    }
+
+    .card-info-value small {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--color-text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .card-location-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .card-venue {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-accent);
+      margin-bottom: 2px;
+    }
+
+    .card-address {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--color-text-muted);
+    }
+
+    .card-hours {
+      margin-top: var(--spacing-sm);
+      padding-top: var(--spacing-sm);
+      border-top: 0.5px solid var(--color-bg-border);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      color: var(--color-text-muted);
+    }
+
+    /* ── Kontakt ────────────────────────────────────────────── */
+    #kontakt {
+      padding: 80px 0;
+      background: var(--color-bg-deep);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .contact-card {
+      border: 0.5px solid var(--color-bg-border);
+      padding: var(--spacing-md);
+    }
+
+    .contact-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .contact-value {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+
+    a.contact-value:hover { color: var(--color-accent); }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--color-bg-deep);
+      border-top: 0.5px solid var(--color-bg-border);
+      padding: var(--spacing-lg) 0;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+      text-align: center;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-subtle);
+    }
+
+    .footer-inner a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    .footer-inner .sep { margin: 0 10px; }
+
+    /* ── Mobile ─────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .container,
+      .nav-inner,
+      .footer-inner { padding-left: 20px; padding-right: 20px; }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+      }
+
+      .artist-name { font-size: 44px; }
+      .artist-alias { font-size: 32px; }
+
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">Tanya <em>Sava</em></a>
+      <ul class="nav-links">
+        <li><a href="#hero">Ausstellung</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-left">
+          <div class="section-label">
+            <span class="rule"></span>
+            <span>Persönliche Kunstausstellung</span>
+          </div>
+          <h1 class="artist-name">Tetiana Savushkina</h1>
+          <p class="artist-alias">Tanya Sava</p>
+          <p class="tagline">Natur, Licht und Stille<br>in jedem Pinselstrich</p>
+          <a href="#vernissage" class="cta-btn">Vernissage · 17. April 2026</a>
+        </div>
+
+        <div class="hero-right">
+          <div class="vernissage-card" id="vernissage">
+            <div class="card-badge">Vernissage &amp; Ausstellung 2026</div>
+            <div class="card-image">
+              <img src="painting-hero.jpg" alt="Haus mit roten Blättern — Öl auf Leinwand, Tanya Sava">
+            </div>
+            <div class="card-body">
+              <div class="card-info-grid">
+                <div class="card-info-item">
+                  <div class="card-info-label">Vernissage</div>
+                  <div class="card-info-value">17.04.2026<small>18:00 Uhr</small></div>
+                </div>
+                <div class="card-info-item">
+                  <div class="card-info-label">Ausstellung</div>
+                  <div class="card-info-value">18.04<small>bis 17.07.2026</small></div>
+                </div>
+              </div>
+              <div class="card-location">
+                <div class="card-location-label">Ort</div>
+                <div class="card-venue">Fenster in der Stadt (FIS)</div>
+                <div class="card-address">Kirchplatz · 91154 Roth</div>
+                <div class="card-hours">Fr 14:00–17:30 &nbsp;·&nbsp; Sa 10:00–12:30</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-label">
+        <span class="rule"></span>
+        <span>Kontakt</span>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-label">Instagram</div>
+          <a href="https://instagram.com/tanyasavaart" class="contact-value" target="_blank" rel="noopener">@tanyasavaart</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-label">E-Mail</div>
+          <a href="mailto:info@tanyasava.art" class="contact-value">info@tanyasava.art</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-label">Telefon</div>
+          <span class="contact-value">Auf Anfrage</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <a href="https://instagram.com/tanyasavaart" target="_blank" rel="noopener">@tanyasavaart</a>
+      <span class="sep">·</span>
+      <span>Tetiana Savushkina</span>
+      <span class="sep">·</span>
+      <span>Roth, Deutschland</span>
+    </div>
+  </footer>
+
+</body>
+</html>
